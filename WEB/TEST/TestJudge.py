@@ -48,7 +48,7 @@ def Judge(s):
         for i in range(10):
             subtask=[random.randint(0,10)]
             for x in range(3):
-                subtask.append([random.random(),"Random",random.randint(0,10),random.randint(0,512)])
+                subtask.append([random.randint(0,100)/100.0,"Random",random.randint(0,10),random.randint(0,512)])
             DataRes[2].append(subtask)
     Ret[3]=DataRes
     return Ret

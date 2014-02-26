@@ -12,7 +12,7 @@
 		[40,["cowcheck.7.in","cowcheck.7.out",1,128],["cowcheck.8.in","cowcheck.8.out",1,128],["cowcheck.9.in","cowcheck.9.out",1,128],["cowcheck.10.in","cowcheck.10.out",1,128]]
     ]
 ]
-#不得有多余逗号和字符，不得有注释
+###不得有多余逗号和字符，不得有注释
 ##Makefile 可选##
 如果存在 系统将在此目录执行 make 
 用于编译自定义比较器等。

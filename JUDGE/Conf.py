@@ -6,7 +6,7 @@ WebServer= 'http://127.0.0.1:8000/xmlrpc'
 ROOTDIR = sys.path[0]
 
 CompileConf={
-    "c":["gcc $(SRC) -O2 -o $(EXE)","$(EXE)","cpp"],
+    "c":["gcc $(SRC) -O2 -o $(EXE)","$(EXE)","c"],
     "cpp":["g++ $(SRC) -O2 -o $(EXE)","$(EXE)","cpp"],
     "pas":["fpc $(SRC) -O2 -o $(EXE)","$(EXE)","pas"],
 }
