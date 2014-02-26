@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block menu %}
+    {% if cont and canEditCont  %}
+        <li><a href="{% url "EditCont" cont.Name %}" class="Edit">编辑比赛</a></li>
+    {% endif %}
+    {% if canEditProb %}
+        <li><a href="{% url "AddProb" %}" class="Edit">添加试题</a></li>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if cont %}
+    <h1>{{cont}}</h1>
+    <div class="ContTime">
+        <span>开始时间:{{cont.Start}}</span>
+        <span>结束时间:{{cont.End}}</span>
+    </div>
+{% else %}
+    <h1>ProbSet</h1>
+{% endif %}
+{% include "showPageNo.html" %}
+{% include "showProbSet.html" %}
+{% endblock %}

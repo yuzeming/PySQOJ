@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>结果详情</h1>
+{% if submit.Perm.canEdit %}
+    {% block menu %}
+        <li><a href="{% url "Rejudge" %}?s={{submit.pk}}" class="Edit">重新评测</a></li>
+    {% endblock %}
+{% endif %}
+
+<table class="table">
+    <tr>
+        <td><a href="{% url "Profile" submit.User%}">{{submit.User}}</a></td>
+        <td><a href="{% url "ProbShow" submit.Prob%}">{{submit.Prob.Title}}</a></td>
+        <td><a href="{% url "Detail" submit.pk %}">{{submit.pk}}</a></td>
+        {% if detail %}
+            <td colspan="2" title="{{detail.2.1}}">编译{% if detail.2.0 %}通过{% else %}失败{% endif %}</td>
+        {% else %}
+            <td colspan="2">等待编译</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <th width="20%" colspan=2>得分</th>
+        <th>详情</th>
+        <th width="15%">时间</th>
+        <th width="15%">内存</th>
+    </tr>
+    {% if datares and not submit.isWait %}
+    {% for subtask in datares %}
+        {% for res in subtask %}
+            {%if not forloop.first%}
+                <tr>
+                {% ifequal forloop.counter 2 %}
+                    <td rowspan="{{subtask|length|add:'-1'}}">{{subtask.0}}</td>
+                {% endifequal %}
+                {% for t in res %}
+                    <td>{{t}}</td>
+                {% endfor %}
+                </tr>
+            {% endif %}
+        {% endfor %}
+        {% if forloop.last %}
+        <tr>
+            <th colspan=2>{{detail.3.0}}</th>
+            <th>总分</th>
+            <th>{{submit.Data}}</th>
+            <th>BySQOJ</th>
+        </tr>
+        {% endif %}
+    {% endfor %}
+    {% else %}
+        <tr><th colspan="4">空</th></tr>
+    {% endif %}
+</table>
+{% if submit.Perm.canViewFile %}
+    <pre class="brush: {{ submit.Lang }}">{{ submit.File.read }}</pre>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,55 @@
+<table class="table">
+    <tr>
+        <th width="10%">ID</th>
+        <th width="20%">Title</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>State</th>
+        <th>Action</th>
+    </tr>
+    {%for c in Set%}
+        <tr>
+            <td class="ID">{{c.Name}}</td>
+            <td>{{c.Title}}</td>
+            <td class="time">{{c.Start}}</td>
+            <td class="time">{{c.End}}</td>
+            <td>
+                {% if c.isEnd%}
+                    <sapn>已经结束</sapn>
+                {% else %}
+                    {% if c.isStart%}
+                        <span>正在进行</span>
+                    {% else %}
+                        <span>尚未开始</span>
+                    {% endif %}
+                {% endif %}
+            </td>
+            <td>
+                {% if c.Perm.hasReged %}
+                    <span class="hasReged">已经注册</span>
+                {% else %}
+                    {% if c.Perm.canReg %}
+                        <a href="{% url "RegCont" c.Name %}">注册比赛</a>
+                    {% else %}
+                        <span class="cannotReg">禁止注册</span>
+                    {% endif %}
+                {% endif %}
+                {% if c.Perm.canEdit %}
+                    <a href="{% url "EditCont" c.Name %}">编辑</a>
+                    <a href="{% url "DelCont" c.Name %}">删除</a>
+                {% endif %}
+                {% if c.Perm.canViewRes %}
+                   <a href="{% url "Result" c.Name %}">结果</a>
+                {% endif %}
+                {% if c.Perm.canViewProb %}
+                    <a href="{% url "ContShow" c.Name %}">进入</a>
+                {% endif %}
+                <a href="{% url "UserList" c.Name %}">用户</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="4">Empty</td>
+        </tr>
+    {%endfor%}
+</table>

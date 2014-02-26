@@ -1,0 +1,24 @@
+<div id="Page">
+    {%if PageSet and totPage %}
+        {% ifnotequal nowPage 1 %}
+            <a href="{{request.path}}?page={{nowPage|add:-1}}" class="n">上一页</a>
+        {% else %}
+            <span class="n">上一页</span>
+        {% endifnotequal %}
+        
+        {% for page in PageSet %}
+            {% ifnotequal page nowPage %}
+                <a href="{{request.path}}?page={{page}}">{{page}}</a>
+            {% else %}
+                <span class="now">{{page}}</span>
+            {% endifnotequal %}
+        {% endfor %}
+            
+        {% ifnotequal nowPage totPage %}
+            <a href="{{request.path}}?page={{nowPage|add:1}}"  class="n">下一页</a>
+        {% else %}
+            <span class="n">下一页</span>
+        {% endifnotequal %}
+    {% endif %}
+</div>
+

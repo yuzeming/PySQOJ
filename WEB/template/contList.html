@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% if canAddCont %}
+    {% block menu %}
+    <li><a href="{% url "AddCont" %}" class="Edit">添加比赛</a></li>
+    {% endblock %}
+{% endif %}
+{% block content %}
+<h1>比赛列表</h1>
+{% include "showPageNo.html" %}
+{% include "showContSet.html" %}
+{% endblock %}

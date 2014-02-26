@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block head%}
+<script type="text/javascript" src="/static/tiny_mce/tiny_mce_popup.js"></script>
+<script type="text/javascript">
+
+    function callback ( url ) {
+            var win = tinyMCEPopup.getWindowArg("window");
+            //就这句关键，IMG_URI应该由服务端生成
+            win.document.getElementById(tinyMCEPopup.getWindowArg("input")).value = url;
+            tinyMCEPopup.close();
+        }
+</script>
+{% endblock %}
+{% block body %}
+{% include "showPageNo.html" %}
+    <form action="{% url "Upland" prob%}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file"/>
+        <input type="submit" value="上传"/>
+    </form>
+    <table class="table">
+        <tr>
+            <th>文件名</th>
+            <th>地址</th>
+            <th>操作</th>
+        </tr>
+        {% for file in Set%}
+        <tr onclick="callback('{{file.Url}}')">
+            <td>{{file.FileName}}</td>
+            <td>{{file.Url}}</td>
+            <td><button onclick="callback('{{file.Url}}')">选择</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

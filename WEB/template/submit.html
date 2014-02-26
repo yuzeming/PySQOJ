@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post" class="Submit">
+    {% csrf_token %}
+    <h2>{% firstof cont "提交代码"%}</h2>
+    {{form.as_table}}
+    <input type="submit" value="提交">
+</form>
+{% endblock %}

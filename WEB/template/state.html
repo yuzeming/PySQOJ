@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "showPageNo.html" %}
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>题目</th>
+        <th>用户</th>
+        <th>结果</th>
+    </tr>
+    {% for submit in Set %}
+        <tr>
+            <td>
+                <a href="{% url "Detail" submit.pk %}">{{submit.pk}}</a>
+            </td>
+            <td>
+                <a href="{% url "ProbShow" name=submit.Prob %}{%if submit.Cont %}?c={{submit.Cont}}{% endif %}">{{submit.Prob.Title}}</a>
+                {% if submit.Cont %}
+                    <span>@ <a href="{% url "ContShow" submit.Cont%}">{{submit.Cont.Title}}</a></span>
+                {% endif %}
+            </td>
+            <td><a href="{% url "Profile" submit.User %}">{{submit.User}}</a></td>
+            <td>
+                <a href="{% url "Detail" submit.pk %}">
+                    {% if submit.isWait%}
+                        <span>等待</span>
+                    {% else %}
+                        {% if submit.Perm.canViewState%}
+                            <span>{{submit.State}}</span>
+                        {% else %}
+                            {% if submit.Error %}
+                                <span>{{submit.Error}}</span>
+                            {% else %}
+                                <span>通过编译</span>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                </a>
+                {% if canRejudge %}
+                    <a href="{% url "Rejudge" %}?id={{ submit.id }}">重新评测</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

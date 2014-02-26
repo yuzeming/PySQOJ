@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ form.media }}
+<script type="text/javascript">
+    function FileBrowser(field_name, url, type, win)
+    {
+        tinyMCE.activeEditor.windowManager.open({
+            file : '{% url "FileManager" prob%}?popup=True',  //上传窗口的路径
+            title : '浏览图片',
+            width : 650,
+            height : 400,
+            resizable : "no",
+            inline : "yes",
+            close_previous : "no"
+        },{
+            window : win,  //告诉它是被谁弹出来的
+            input : field_name  //这个是指生成的图片地址要往哪里填
+        });
+        return false;
+    }
+</script>
+{% endblock %}
+{% block menu %}
+    <li><a href="{% url "ProbShow" prob.Name %}">查看</a></li>
+    <li><a href="{% url "DelProb" prob.Name %}">删除</a></li>
+    <li><a href="{% url "FileManager" prob.Name %}">附件管理</a></li>
+{% endblock %}
+{% block content %}
+<form action="" method="post" enctype="multipart/form-data" class="EditProb">
+    {% csrf_token %}
+    <h2>{{ prob }}</h2>
+    {{form.as_p}}
+    <input type="submit" value="提交">
+</form>
+
+{% endblock %}

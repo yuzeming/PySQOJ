@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>排名</h1>
+    <table class="table">
+
+        <tr>
+            <th>用户</th>
+            <th>通过</th>
+        </tr>
+        {% for x in Set%}
+            <tr>
+                <td><a href="{% url "Profile" x.user %}">{{x.user}}</a></td>
+                <td>{{x.ACTot}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

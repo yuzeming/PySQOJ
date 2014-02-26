@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block menu %}
+    <li><a href="{% url "ProbShow" prob.Name %}">查看</a></li>
+{% endblock %}
+{% block content %}
+{% include "showPageNo.html" %}
+    <form action="{% url "Upland" prob%}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file"/>
+        <input type="submit" value="上传"/>
+    </form>
+    <table class="table">
+        <tr>
+            <th>文件名</th>
+            <th>地址</th>
+            <th>操作</th>
+        </tr>
+        {% for file in Set%}
+        <tr>
+            <td>{{file.FileName}}</td>
+            <td>{{file.Url}}</td>
+            <td><a href="{% url "FileManager" prob%}?del={{file.pk}}">删除</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

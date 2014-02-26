@@ -1,0 +1,9 @@
+[
+    ["cowcheck.in","cowcheck.out"],
+    null,
+    [
+        [30,["cowcheck.1.in","cowcheck.1.out",1,128],["cowcheck.2.in","cowcheck.2.out",1,128],["cowcheck.3.in","cowcheck.3.out",1,128]],
+        [30,["cowcheck.4.in","cowcheck.4.out",1,128],["cowcheck.5.in","cowcheck.5.out",1,128],["cowcheck.6.in","cowcheck.6.out",1,128]],
+		[40,["cowcheck.7.in","cowcheck.7.out",1,128],["cowcheck.8.in","cowcheck.8.out",1,128],["cowcheck.9.in","cowcheck.9.out",1,128],["cowcheck.10.in","cowcheck.10.out",1,128]]
+    ]
+]

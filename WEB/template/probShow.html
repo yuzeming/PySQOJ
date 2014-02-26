@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block menu %}
+    {% if Prob.Perm.canEdit %}
+        <li><a href="{% url "EditProb" Prob.Name %}">编辑</a></li>
+        <li><a href="{% url "DelProb" Prob.Name %}">删除</a></li>
+        <li><a href="{% url "FileManager" Prob.Name %}">附件</a></li>
+    {% endif %}
+    {% if Prob.Perm.canViewSolve %}
+        <li><a href="{% url "SolveShow" Prob.Name %}?p={{Prob.Name}}">题解</a></li>
+    {% endif %}
+    {% if Prob.Perm.canSubmit %}
+            {% if cont %}
+                <li><a href="{% url "SubmitX" cont %}?p={{Prob.Name}}">提交</a></li>
+            {% else %}
+                <li><a href="{% url "Submit" %}?p={{Prob.Name}}">提交</a></li>
+            {% endif %}
+    {% else %}
+        <li>禁止提交</li>
+    {% endif %}
+{% endblock %}
+
+{% block content%}
+<div class="ProbShow">
+    <div>
+        {{Prob.HTML|safe}}
+        {% if Prob.madiafile_set.all %}
+        <div class="problem">
+            <h3 class="subtitle">附件</h3>
+            <div class="text">
+                {% for x in Prob.madiafile_set.all %}
+                    <p><a href="{{ x.Url }}">{{ x.FileName }}</a></p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

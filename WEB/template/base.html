@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+        <title>{% block title%}SQOJ{% endblock %}</title>
+        <link rel="stylesheet" href="{{ STATIC_URL }}style.css" type="text/css"/>
+		<script type="text/javascript" src="{{ STATIC_URL }}syntaxhighlighter/scripts/shCore.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}syntaxhighlighter/scripts/shAutoloader.js"></script>
+		<link href="{{ STATIC_URL }}syntaxhighlighter/styles/shCore.css" rel="stylesheet" type="text/css" />
+		<link href="{{ STATIC_URL }}syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+        {% block head%}{% endblock %}
+    </head>
+    <body>
+		{%block body %}
+        <div id="main">
+            <div id="wrapper">
+                <div id="top">
+                    <div id="logo">
+                        <h1><a href="{% url "Index" %}">SQOJ</a></h1>
+                    </div>
+                    <div id="menu">
+                        <ul>
+                            {%block menu%}{%endblock%}
+                            <li>|</li>
+                            <li><a href="{% url "Index" %}">首页</a></li>
+                            <li><a href="{% url "ProbList" %}"/>题目</a></li>
+                            <li><a href="{% url "ContList" %}"/>比赛</a></li>
+                            <li><a href="{% url "State" %}"/>状态</a></li>
+                            <li><a href="{% url "Rank" %}">排名</a></li>
+                            {% if user.is_authenticated %}
+                                <li><a href="{% url "MyProfile" %}">{{user.username}}</a></li>
+                                <li><a href="{% url "Logout" %}?next={{request.path}}">注销</a></li>
+                            {%else%}
+                                <li><a href="{% url "Login" %}?next={{request.path}}">登陆</a></li>
+                                <li><a href="{% url "Register" %}?next={{request.path}}">注册</a></li>
+                            {%endif%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="content">
+                {% if messages %}
+                    <div class="messageslist">
+                        <ul class="messages">
+                                {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                {%block content%}
+                {%endblock%}
+            </div>
+        </div>
+		{%endblock%}
+        <script type="text/javascript">
+            function path()
+            {
+                var args = arguments,
+                        result = []
+                        ;
+
+                for(var i = 0; i < args.length; i++)
+                    result.push(args[i].replace('@', '{{ STATIC_URL }}syntaxhighlighter/scripts/'));
+
+                return result
+            };
+
+            SyntaxHighlighter.autoloader.apply(null, path(
+                    'applescript            @shBrushAppleScript.js',
+                    'actionscript3 as3      @shBrushAS3.js',
+                    'bash shell             @shBrushBash.js',
+                    'coldfusion cf          @shBrushColdFusion.js',
+                    'cpp c                  @shBrushCpp.js',
+                    'c# c-sharp csharp      @shBrushCSharp.js',
+                    'css                    @shBrushCss.js',
+                    'delphi pascal pas      @shBrushDelphi.js',
+                    'diff patch             @shBrushDiff.js',
+                    'erl erlang             @shBrushErlang.js',
+                    'groovy                 @shBrushGroovy.js',
+                    'java                   @shBrushJava.js',
+                    'jfx javafx             @shBrushJavaFX.js',
+                    'js jscript javascript  @shBrushJScript.js',
+                    'perl pl                @shBrushPerl.js',
+                    'php                    @shBrushPhp.js',
+                    'text plain             @shBrushPlain.js',
+                    'py python              @shBrushPython.js',
+                    'ruby rails ror rb      @shBrushRuby.js',
+                    'sass scss              @shBrushSass.js',
+                    'scala                  @shBrushScala.js',
+                    'sql                    @shBrushSql.js',
+                    'vb vbnet               @shBrushVb.js',
+                    'xml xhtml xslt html    @shBrushXml.js'
+            ));
+            SyntaxHighlighter.all();
+        </script>
+    </body>
+</html>

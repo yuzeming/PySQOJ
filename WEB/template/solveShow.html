@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block menu %}
+    {% if Prob.Perm.canEdit %}
+        <li><a href="{% url "EditProb" Prob.Name %}">编辑</a></li>
+        <li><a href="{% url "DelProb" Prob.Name %}">删除</a></li>
+        <li><a href="{% url "FileManager" Prob.Name %}">附件</a></li>
+    {% endif %}
+    <li><a href="{% url "ProbShow" Prob.Name %}?p={{Prob.Name}}">题目</a></li>
+    {% if Prob.Perm.canSubmit %}
+            {% if cont %}
+                <li><a href="{% url "SubmitX" cont %}?p={{Prob.Name}}">提交</a></li>
+            {% else %}
+                <li><a href="{% url "Submit" %}?p={{Prob.Name}}">提交</a></li>
+            {% endif %}
+    {% else %}
+        <li>禁止提交</li>
+    {% endif %}
+{% endblock %}
+
+{% block content%}
+<div class="ProbShow">
+    <div>
+        {{Prob.Solve|safe}}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+<table class="table">
+    <tr>
+        <th width="10%">ID</th>
+        <th>Title</th>
+        <th width="30%">Action</th>
+    </tr>
+{%for Prob in Set%}
+    {% if Prob.Perm.canViewProb%}
+        <tr>
+            <td class="ID"><a href="{% url "ProbShow" Prob.Name %}{%if cont %}?c={{cont.Name}}{% endif %}">{{Prob.Name}}</a></td>
+            <td>
+                {{Prob.Title}}
+                {% if Prob.madiafile_set.exists %}
+                    <img class="attachments" src="{{ STATIC_URL }}attachments.png" title="有附件"/>
+                {% endif %}
+            </td>
+            <td>
+                {% if Prob.Perm.canSubmit%}
+                    {% if cont %}
+                        <a href="{% url "SubmitX" cont.Name%}?p={{Prob.Name}}">提交</a>
+                    {%else%}
+                        <a href="{% url "Submit"%}?p={{Prob.Name}}">提交</a>
+                    {% endif %}
+                {% endif %}
+                {% if Prob.Perm.canDD %}
+                    <a href="{% url "DataDownland" Prob.Name %}">数据</a>
+                {% endif %}
+                {% if Prob.Perm.canEdit %}
+                    <a href="{% url "EditProb" Prob.Name %}">编辑</a>
+                    <a href="{% url "DelProb" Prob.Name %}">删除</a>
+                    <a href="{% url "FileManager" Prob.Name %}">附件管理</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endif %}
+{% empty %}
+    <tr>
+        <td colspan="5">Empty</td>
+    </tr>
+{%endfor%}
+</table>

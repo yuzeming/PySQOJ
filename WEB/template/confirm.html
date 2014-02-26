@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>请确认</h1>
+<h2>{{ title }}</h2>
+<ul class="objlist">
+    {% for x in List %}
+        <li>{{ x }}</li>
+    {% endfor %}
+</ul>
+<a class="back" href="javascript:history.go({{x}});">后退</a>
+<a class="confirm" href="{{href}}">确认</a>
+{% endblock %}

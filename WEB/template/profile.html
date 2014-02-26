@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>{{profile.user.username}}</h1>
+    {% if user.is_superuser %}
+        <p>管理员</p>
+    {% else %}
+        <p>用户</p>
+    {% endif %}
+    <span>{{profile.user.email}}</span>
+    <p>注册时间:{{profile.user.date_joined}}</p>
+    <p>最后登陆:{{profile.user.last_login}}</p>
+    {% if profile.Perm.canChangePswd or profile.Perm.canSetPswd %}
+        <a href="{% url "Password" profile.user %}">修改密码</a>
+    {% endif %}
+    <p>通过:{{profile.ACTot}}</p>
+    <div id="WorkList">
+        {% for p in ProbSet %}
+            <a href="{% url "ProbShow" p.Name %}" class="{{ p.Class }}">{{p.Name}}</a>
+        {% endfor %}    
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+    </ul>
+    
+{% endblock %}

@@ -1,0 +1,279 @@
+/*
+Theme Name: Simple v2
+Theme URI: http://bob.my/wordpress-theme-simple-version-2-is-out/
+Description: Simple one ;)
+Version: 2.0
+Author: Bob Jiwakacau
+Author URI: http://bob.my/
+Tags: blue, white, fixed width, two columns, widgets, rounded corners
+*/
+
+/*...... body ........*/
+* { margin: 0; padding: 0; list-style:none; text-decoration:none; }
+body { font:0.69em Verdana, Arial, Helvetica, sans-serif; color:#333;}
+
+/*...... links ........*/
+a { color:#2583ad;font-size:1.1em}
+a:hover { color:#000;}
+
+/*...... main and sticky footer ........*/
+html, body { height: 100%; }
+#main { min-height: 100%; height: 100%; margin: 0 auto -31px; }
+
+/*...... h2/h3 ........*/
+h2 { font:1.58em Georgia, serif; display:block; }
+h3 { font:1.58em Georgia, serif; padding:5px; margin-bottom:10px;}
+.clear { clear:both;}
+
+/*...... WRAPPER ........*/
+#wrapper {
+	background:#505050;
+	width: 100%;
+	position: fixed;
+	top: 0;
+    z-index: 19999;
+}
+#top {
+	margin:auto;
+	height:30px;
+	max-width:910px;
+	min-width: 500px;
+}
+
+/*...... logo { with logo or text just remove one of them} ........*/
+#logo { float:left; height:30px; }
+#logo h1 {  font-size:10px; }
+#logo h1 a { color:white;
+font-family:comic Sans MS,serif;
+font-size:20px;
+height:30px; }
+
+
+/*...... top menu ........*/
+#menu {  float:right; height:30px; color:#ccc; }
+#menu ul { margin-top:5px; float:right;}
+#menu ul li { float:left; height:20px; margin:0 5px 0 0; display: inline; line-height:20px; }
+#menu ul li a { display: block; padding:0 10px 0 10px; color:#ccc; }
+#menu ul li a:hover{ color:#fff;}
+
+/*...... content ........*/
+#content { max-width:930px;min-width: 500px; margin:auto; padding-top:40px;}
+
+.table{
+	width:100%
+}
+
+.table tr:nth-child(2n+1) td {
+	background: #f2f7fc;
+}
+
+td.ID{
+    text-align: center;
+}
+
+td.time{
+    font-size: smaller;
+}
+
+#Page {
+	padding: 10px;
+}
+
+#Page a, #Page span {
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 22px;
+	display: inline-block;
+	border: 1px solid #E7ECF0;
+	background: white;
+	margin-right: 5px;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+#Page span.now{
+	color: white;
+	background: #2583AD;
+}
+
+#Page .n {
+	width: 60px;
+	line-height: 24px;
+	overflow: hidden;
+}
+
+#Page span.n{
+	color: #ccc;
+}
+
+form {
+	margin: 30px auto;
+    width: 500px;
+}
+
+form.EditProb,
+form.Submit{
+    width: 700px;
+}
+
+form h2{
+	font-size: large;
+}
+
+form .helptext{
+	font-size: small;
+	color: #909090;
+}
+
+form label{
+    font-size: larger;
+}
+
+form p{
+    display: block;
+}
+
+form input[type=text],
+form input[type=password],
+form textarea,
+form select{
+	width: 100%;
+}
+
+form input[type=text],
+form input[type=password],
+form select{
+    height: 30px;
+}
+
+form input[type=checkbox]{
+
+}
+
+form select[multiple="multiple"]{
+    height: auto;
+}
+
+form input[type=submit] {
+    margin: 10px auto;
+    width: 70px;
+	padding: 3px 6px;
+	border: 1px solid #2F5BB7;
+	color: white;
+    background: #357AE8 -webkit-gradient(linear, left top, left bottom, from(#4D90FE), to(#357AE8));
+}
+
+div.messageslist {
+	background: #FFC;
+}
+
+div.messageslist li{
+	border : 1px solid #DDD;
+	font-size: medium;
+	color: #666;
+	padding: 4px 5px;
+}
+
+a.back,
+a.confirm{
+	font-size: large;
+}
+
+ul.objlist{
+    padding:0 5px;
+}
+
+ul.objlist li{
+    font-size: large;
+    margin: 5px;
+}
+
+div#WorkList{
+	max-width:900px;
+	margin: auto;
+}
+
+div#WorkList a{
+    margin: 3px;
+	width: 70px;
+	height: 20px;
+	text-align: center;
+	line-height: 20px;
+	display: inline-block;
+	border: 1px solid #E7ECF0;
+	color: white;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+div#WorkList a.notTry{
+	background: #bbbbbb;
+}
+
+div#WorkList a.hasTry{
+	background: #ff745f;
+}
+
+div#WorkList a.isAC{
+	background: #408000;
+}
+
+div.problem * {
+    margin: 5px;
+}
+
+h2.title {
+    text-align: center;
+    color: #1A5CC8;
+}
+
+div.limits {
+    text-align: center;
+    font-size: small;
+}
+
+h3.subtitle{
+    color: #1A5CC8;
+}
+
+table.sample {
+    width: 100%;
+    border: solid 1px #1A5CC8;
+    border-collapse: collapse;
+}
+
+table.sample tr td, table.sample tr th {
+    border: solid 1px #1A5CC8;
+    padding: 3px;
+    vertical-align: top;
+}
+
+pre.intable {
+    font-family: monospace;
+    margin: 0;
+}
+
+div.test{
+    margin: 5px;
+}
+
+div.text p{
+    padding:5px 20px;
+}
+
+div.code {
+    margin: 10px;
+}
+
+span.hasReged{
+	font-size: 1.1em;
+	color: #14AD14;
+}
+
+span.cannotReg{
+	font-size: 1.1em;
+	color: #CCCCCC;
+}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <table class="table">
+        <caption>{{cont.Name}}</caption>
+        <tr>
+            <th>Rank</th>
+            <th>用户名</th>
+            <th>总分</th>
+            {% for p in ProbList %}
+            <th>{{p}}</th>
+            {% endfor %}
+        </tr>
+    {% for r in Set %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><a href="{% url "Profile" r.User %}">{{r.User}}</a></td>
+            <td>{{r.Src}}</td>
+            {% for x in r.ResList%}
+                {% if x %}
+                    <td><a href="{% url "Detail" x.0 %}">{{x.2}}</a></td>
+                {% else %}
+                    <td>未提交</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    {% empty %}
+        <tr><td colspan="{{ProbList|length|add:3}}" align="center">Empty</td></tr>
+    {% endfor %}
+    </table>
+{% endblock %}
